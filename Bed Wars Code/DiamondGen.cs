@@ -12,6 +12,7 @@ namespace Bed_Wars_Code
 	{
 		public DiamondGen(string name, Map map, int blocksreq) : base(name, map, blocksreq)
 		{
+			this.SingleResItemID = Resources.Diamond;
 		}
 	}
 }

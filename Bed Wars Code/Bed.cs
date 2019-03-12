@@ -14,9 +14,15 @@ namespace Bed_Wars_Code
 		public int level = 0;
 		
 		public bool destroyed = false;
-				
+		
+		public Team BedTeam;
+		
+		public BWAction DefendAct;
+		
 		public Bed(Team t)
 		{
+			BedTeam = t;
+			DefendAct = new BWAction("defend bed", Defend);
 		}
 		
 		public void Defend(Player p)

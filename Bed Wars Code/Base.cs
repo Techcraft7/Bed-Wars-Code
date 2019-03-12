@@ -15,7 +15,10 @@ namespace Bed_Wars_Code
 			Team = t;
 			this.ques = new Question("You are at your base, What do you do?", this.acts);
 			this.TeamBed = new Bed(Team);
-			acts = new List<BWAction>() {new BWAction("get resources", CollectResources), new BWAction("build defense", TeamBed.Defend)};
+			var list = new List<BWAction>();
+			list.Add(new BWAction("get resources", CollectResources));
+			list.Add(TeamBed.DefendAct);
+			acts = list;
 		}
 
 		public Team Team;
@@ -28,7 +31,9 @@ namespace Bed_Wars_Code
 		
 		public void CollectResources(Player p)
 		{
-			
+			Console.WriteLine("You chose to collect resources:\nRolling...");
+			int roll = new Random(DateTime.Now.Millisecond).Next(1, 7);
+			Console.WriteLine();
 		}
 	}
 }

@@ -15,6 +15,8 @@ namespace Bed_Wars_Code
 		public bool Running = false;
 		
 		public int IndexOfTurn = 0;
+		
+		public List<Team> teams;
 
 		public List<Player> Players = new List<Player>();
 
@@ -28,6 +30,8 @@ namespace Bed_Wars_Code
 		{
 			return Players[index].loc;
 		}
+		
+		
 		
 		public void NextTurn()
 		{

@@ -8,13 +8,13 @@ using Techcraft7_DLL_Pack;
 using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
 namespace Bed_Wars_Code
 {
-	enum Resources
+	public enum Resources
 	{
-		Null = 0,
-		Iron = 1,
-		Gold = 2,
-		Diamond = 3,
-		Emerald = 4
+		Iron = 0,
+		Gold = 1,
+		Diamond = 2,
+		Emerald = 3,
+		Null = 0
 	}
 }
 

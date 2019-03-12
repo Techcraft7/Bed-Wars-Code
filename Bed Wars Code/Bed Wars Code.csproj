@@ -71,6 +71,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

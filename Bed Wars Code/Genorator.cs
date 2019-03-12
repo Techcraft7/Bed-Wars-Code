@@ -12,11 +12,18 @@ namespace Bed_Wars_Code
 	{
 		public Genorator(string name, Map map, int blocksreq) : base(name, map, blocksreq)
 		{
+			
 		}
 
+		internal bool MultiRes = false;
+		
+		public Resources SingleResItemID = Resources.Null;
+		
 		public int step = 0;
 
-		public int[] Times =  {
+		internal int SingleResTime = 0;
+		
+		public int[] MultiResTimes =  {
 			0,
 			0,
 			0,
@@ -24,24 +31,70 @@ namespace Bed_Wars_Code
 		};
 
 		//iron, gold, diamond, emerald
-		public int[] Items =  {
+		public int[] MultiResItems =  {
 			0,
 			0,
 			0,
 			0
 		};
 
+		public int SingleResItemCount = 0;
+		
 		//iron, gold, diamond, emerald
-		Resources Res;
 
+		public int[] GetResources()
+		{
+			if (MultiRes)
+			{
+				return MultiResItems;
+			}
+			else
+			{
+				switch (SingleResItemID)
+				{
+					case Resources.Iron:
+						return new int[4] {SingleResItemCount, 0, 0, 0};
+						break;
+					case Resources.Gold:
+						return new int[4] {0, SingleResItemCount, 0, 0};
+						break;
+					case Resources.Diamond:
+						return new int[4] {0, 0, SingleResItemCount, 0};
+						break;
+					case Resources.Emerald:
+						return new int[4] {0, 0, 0, SingleResItemCount};
+						break;
+					default:
+						throw new InvalidOperationException("Resource was set to null!");
+				}
+			}
+		}
+		
 		public void Update()
 		{
-			for (int i = 0; i < Times.Length; i++) {
-				if (Times[i] < 0) {
-					continue;
+			if (MultiRes)
+			{
+				for (int i = 0; i < MultiResTimes.Length; i++)
+				{
+					if (MultiResTimes[i] <= 0)
+					{
+						continue;
+					}
+					if (step % MultiResTimes[i] == 0 && MultiResTimes[i] > 0)
+					{
+						MultiResItems[i]++;
+					}
 				}
-				if (step % Times[i] == 0 && Times[i] > 0) {
-					Items[i]++;
+			}
+			else
+			{
+				if (SingleResTime <= 0)
+				{
+					return;
+				}
+				if (step % SingleResTime == 0 && SingleResTime > 0)
+				{
+					SingleResItemCount++;
 				}
 			}
 		}

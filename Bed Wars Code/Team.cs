@@ -12,6 +12,8 @@ namespace Bed_Wars_Code
 	{
 		public Base BaseLoc;
 
+		public bool Eliminated = false;
+		
 		public List<Player> Players = new List<Player>();
 
 		public string Name;
@@ -19,12 +21,12 @@ namespace Bed_Wars_Code
 		public Team(ConsoleColor TeamColor)
 		{
 			this.DisplayColor = TeamColor;
+			this.Name = DisplayColor.ToString() + " Base";
 		}
 
 		public ConsoleColor DisplayColor;
 
-		Color TeamColor;
-	//for a gui (to be implimented)
+		Color TeamColor;//for a gui (to be implimented)
 	}
 }
 
