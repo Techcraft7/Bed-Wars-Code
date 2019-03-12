@@ -13,6 +13,8 @@ namespace Bed_Wars_Code
 		public Map BWMap;
 
 		public bool Running = false;
+		
+		public int IndexOfTurn = 0
 
 		public List<Player> Players = new List<Player>();
 
@@ -20,6 +22,12 @@ namespace Bed_Wars_Code
 		{
 			this.Players = Players;
 			this.BWMap = map;
+		}
+		
+		public void NextTurn()
+		{
+			IndexOfTurn = IndexOfTurn < Players.Count ? IndexOfTurn + 1 : 0;
+			BWMap.Update();
 		}
 	}
 }
