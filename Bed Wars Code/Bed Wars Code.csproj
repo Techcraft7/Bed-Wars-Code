@@ -54,8 +54,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base.cs" />
+    <Compile Include="BWAction.cs" />
+    <Compile Include="DiamondGen.cs" />
+    <Compile Include="EmeraldGen.cs" />
+    <Compile Include="Forge.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Genorator.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="MapGenorator.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
