@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bed Wars Code", "Bed Wars Code\Bed Wars Code.csproj", "{88A798B2-DABD-4D65-B36D-EBD67199EBF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88A798B2-DABD-4D65-B36D-EBD67199EBF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A798B2-DABD-4D65-B36D-EBD67199EBF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A798B2-DABD-4D65-B36D-EBD67199EBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A798B2-DABD-4D65-B36D-EBD67199EBF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+D:\Code\Bed Wars Code\Bed Wars Code\obj\Debug\Bed Wars Code.csprojResolveAssemblyReference.cache
+D:\Code\Bed Wars Code\Bed Wars Code\bin\Debug\Bed Wars Code.exe.config
+D:\Code\Bed Wars Code\Bed Wars Code\bin\Debug\Bed Wars Code.exe
+D:\Code\Bed Wars Code\Bed Wars Code\bin\Debug\Bed Wars Code.pdb
+D:\Code\Bed Wars Code\Bed Wars Code\obj\Debug\Bed Wars Code.exe
+D:\Code\Bed Wars Code\Bed Wars Code\obj\Debug\Bed Wars Code.pdb
