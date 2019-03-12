@@ -21,7 +21,15 @@ namespace Bed_Wars_Code
 			this.width = width;
 			this.height = height;
 		}
-
+		
+		public void Update()
+		{
+			foreach ()
+			{
+				//update gens!
+			}
+		}
+		
 		public Location GetLocationByCoords(int x, int y)
 		{
 			return LocCoords[x][y];
