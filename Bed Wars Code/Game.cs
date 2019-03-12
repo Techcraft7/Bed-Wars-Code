@@ -14,7 +14,7 @@ namespace Bed_Wars_Code
 
 		public bool Running = false;
 		
-		public int IndexOfTurn = 0
+		public int IndexOfTurn = 0;
 
 		public List<Player> Players = new List<Player>();
 
@@ -22,6 +22,11 @@ namespace Bed_Wars_Code
 		{
 			this.Players = Players;
 			this.BWMap = map;
+		}
+		
+		public Location GetPlayerLoction(int index)
+		{
+			return Players[index].loc;
 		}
 		
 		public void NextTurn()

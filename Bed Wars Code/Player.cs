@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
@@ -22,6 +23,11 @@ namespace Bed_Wars_Code
 		//iron, gold, diamond, emerald
 		public Team CurrentTeam;
 
+		public ConsoleColor GetTeamColor()
+		{
+			return this.CurrentTeam.DisplayColor;
+		}
+		
 		public Player(string name)
 		{
 			this.Name = name;

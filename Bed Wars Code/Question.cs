@@ -32,13 +32,15 @@ namespace Bed_Wars_Code
 			return output;
 		}
 
-		public void Ask()
+		public void Ask(Player p)
 		{
 			while (success == false) {
-				Console.WriteLine(Text);
+				string[] text = {("[" + p.Name + "]"), this.Text};
+				ConsoleColor[] colors = {p.GetTeamColor(), ConsoleColor.White};
+				CCM.WriteLineMultiColor(text, colors);
 				foreach (BWAction i in actions) {
 					if (Console.ReadLine() == i.alias) {
-						i.Execute();
+						i.Execute(p);
 						success = true;
 					}
 					else {

@@ -6,24 +6,22 @@ using System.Threading;
 using Bed_Wars_Code;
 using Techcraft7_DLL_Pack;
 using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
+
 namespace Bed_Wars_Code
 {
-	public class BWAction
+	public class Bed
 	{
-		public readonly string alias = "";
-
-		public Action<Player> action;
-
-		public BWAction(string name, Action<Player> action)
+		public int level = 0;
+		
+		public bool destroyed = false;
+				
+		public Bed(Team t)
 		{
-			this.alias = name;
-			this.action = action;
 		}
-
-		public void Execute(Player p)
+		
+		public void Defend(Player p)
 		{
-			action.Invoke(p);
+			
 		}
 	}
 }
-

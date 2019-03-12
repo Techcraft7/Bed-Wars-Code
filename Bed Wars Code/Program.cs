@@ -14,8 +14,8 @@ namespace Bed_Wars_Code
 		public static int NumberOfPlayers = 0;
 		public static Game CurrentGame;
 		public static int NumberOfTeams = 0;
-		public static List<Team> teams;
-		public static List<Player> players;
+		public static List<Team> teams = new List<Team>();
+		public static List<Player> players = new List<Player>();
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("Welcome to BedWars!");
@@ -34,26 +34,31 @@ namespace Bed_Wars_Code
 					Console.Clear();
 				}
 			}
+			for (int i = 0; i < NumberOfPlayers; i++)
+			{
+				Console.WriteLine("Enter a name for Player {0}:", i + 1);
+				players.Add(new Player(Console.ReadLine()));
+			}
+			Console.WriteLine("Loading...");
 			NumberOfTeams = NumberOfPlayers;
 			List<int> used = new List<int>();
 			int c = 1;
 			int p = 0;
-			for (int i = 0; i < NumberOfPlayers / 2; i++)
+			for (int i = 0; i < NumberOfPlayers; i++)
 			{
 				teams.Add((new Team(((ConsoleColor)c))));
 				c++;
 			}
-			Console.WriteLine("Loading...");
-			for (int i = 0; i < players.Count; i++)
+			for (int i = 0; i < teams.Count; i++)
 			{
-				p = new Random(DateTime.Now.Millisecond).Next(0, players.Count);
+				p = new Random(DateTime.Now.Millisecond).Next(0, players.Count - 1);
 				foreach (int n in used)
 				{
 					if (p == n)
 					{
 						while (p != n)
 						{
-							p = new Random(DateTime.Now.Millisecond).Next(0, players.Count);
+							p = new Random(DateTime.Now.Millisecond).Next(0, players.Count - 1);
 						}
 					}
 				}
@@ -61,9 +66,10 @@ namespace Bed_Wars_Code
 			}
 			CurrentGame = new Game(players, new MapGenorator(teams).GeneratedMap);
 			StartGame();
+			Console.WriteLine("Starting!");
 			while (CurrentGame.Running)
 			{
-				//do stuff
+				
 			}
 			Console.Write("Press enter to continue . . . ");
 			Console.ReadLine();

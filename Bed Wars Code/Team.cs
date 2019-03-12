@@ -21,7 +21,7 @@ namespace Bed_Wars_Code
 			this.DisplayColor = TeamColor;
 		}
 
-		ConsoleColor DisplayColor;
+		public ConsoleColor DisplayColor;
 
 		Color TeamColor;
 	//for a gui (to be implimented)

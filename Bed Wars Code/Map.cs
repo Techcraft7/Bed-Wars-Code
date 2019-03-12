@@ -24,9 +24,12 @@ namespace Bed_Wars_Code
 		
 		public void Update()
 		{
-			foreach ()
+			foreach (Location[] row in LocCoords)
 			{
-				//update gens!
+				foreach (Genorator gen in row)
+				{
+					gen.Update();
+				}
 			}
 		}
 		
