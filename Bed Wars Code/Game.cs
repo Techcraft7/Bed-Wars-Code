@@ -9,7 +9,7 @@ using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
 namespace Bed_Wars_Code
 {
 	public class Game
-	{
+	{		
 		public Map BWMap;
 
 		public bool Running = false;

@@ -91,10 +91,11 @@ namespace Bed_Wars_Code
 				players[p].CurrentTeam = teams[i];
 				used.Add(p);
 			}
-			CurrentGame = new Game(players, new MapGenorator(teams).GeneratedMap);
+			CurrentGame = new Game(players, new MapGenorator(teams).MakeMap(teams));
 			StartGame();
 			#if DEBUG
-			Console.WriteLine("Press enter to continue");
+				Console.WriteLine(CurrentGame.BWMap.ToString());
+				Console.WriteLine("Press enter to continue");
 				Console.ReadLine();
 			#endif
 			Console.Clear();
