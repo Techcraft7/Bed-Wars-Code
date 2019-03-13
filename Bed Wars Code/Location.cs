@@ -41,32 +41,41 @@ namespace Bed_Wars_Code
 			//1=up
 			//2=right
 			//3=down
-			try {
+			try
+			{
 				output.Add(map.GetLocationByCoords(Coords[0] - 1, Coords[1]));
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+			{
 			}
-			try {
+			try
+			{
 				output.Add(map.GetLocationByCoords(Coords[0], Coords[1] + 1));
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+			{
 			}
-			try {
+			try
+			{
 				output.Add(map.GetLocationByCoords(Coords[0] + 1, Coords[1]));
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+			{
 			}
-			try {
+			try
+			{
 				output.Add(map.GetLocationByCoords(Coords[0], Coords[1] - 1));
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+			{
 			}
 			return output;
 		}
 
 		public void SendPlayer(Player p)
 		{
-			if (p.loc.name == name) {
+			if (p.loc.name == name) 
+			{
 				Console.WriteLine("You are already here!");
 			}
 		}

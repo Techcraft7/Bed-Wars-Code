@@ -25,7 +25,8 @@ namespace Bed_Wars_Code
 		private string GetOptions()
 		{
 			string output = "";
-			foreach (BWAction i in actions) {
+			foreach (BWAction i in actions) 
+			{
 				output += i.alias + ",";
 			}
 			output.Remove(output.Length - 1, 1);
@@ -34,7 +35,8 @@ namespace Bed_Wars_Code
 
 		public void Ask(Player p)
 		{
-			while (success == false) {
+			while (success == false) 
+			{
 				string[] text = {("[" + p.Name + "]"), this.Text};
 				ConsoleColor[] colors = {p.GetTeamColor(), ConsoleColor.White};
 				CCM.WriteLineMultiColor(text, colors);
