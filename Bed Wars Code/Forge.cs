@@ -19,7 +19,7 @@ namespace Bed_Wars_Code
 		
 		//iron, gold, diamond, emerald
 		
-		public Forge(string name, Map map, int blocksreq) : base(name, map, blocksreq)
+		public Forge(string name, Map map, int blocksreq, int[] coords) : base(name, map, blocksreq, coords)
 		{
 			MultiRes = true;
 		}

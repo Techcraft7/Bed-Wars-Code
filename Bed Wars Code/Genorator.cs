@@ -10,7 +10,7 @@ namespace Bed_Wars_Code
 {
 	public class Genorator : Location
 	{
-		public Genorator(string name, Map map, int blocksreq) : base(name, map, blocksreq)
+		public Genorator(string name, Map map, int blocksreq, int[] coords) : base(name, map, blocksreq, coords)
 		{
 			
 		}

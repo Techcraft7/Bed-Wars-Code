@@ -53,18 +53,18 @@ namespace Bed_Wars_Code
 			teams.Add(new Team(ConsoleColor.White));
 			usedclrs.Add(0xF);
 			Random rng = new Random();
-			for (int i = 0; i < 7; i++)
+			for (int i = 1; i < 8; i++)
 			{
-				c = rng.Next(0, players.Count);
+				c = rng.Next(1, 16);
 				Console.WriteLine("c = {0}", c);
 				foreach (int n in usedclrs)
 				{
-					if (c == n)
+					if (c == n || c == 0)
 					{
-						Console.WriteLine("c == n", c);
-						while (c == n)
+						Console.WriteLine("c == n || c == 0", c);
+						while (c == n || c == 0)
 						{
-							c = new Random().Next(0, players.Count);
+							c = new Random().Next(1, 16);
 							Console.WriteLine("c is now {0}", c);
 						}
 					}
@@ -91,8 +91,18 @@ namespace Bed_Wars_Code
 				players[p].CurrentTeam = teams[i];
 				used.Add(p);
 			}
+			#if DEBUG
+			if (players.Count == 1)
+			{
+				Console.WriteLine("OH SHOOT!");
+			}
+			else
+			{
+				Console.WriteLine("# of players = " + players.Count);
+			}
+			#endif
 			CurrentGame = new Game(players, new MapGenorator(teams).MakeMap(teams));
-			StartGame();
+			CurrentGame.Start();
 			#if DEBUG
 				Console.WriteLine(CurrentGame.BWMap.ToString());
 				Console.WriteLine("Press enter to continue");
@@ -119,10 +129,6 @@ namespace Bed_Wars_Code
 			}
 			Console.Write("Press enter to continue . . . ");
 			Console.ReadLine();
-		}
-		public static void StartGame()
-		{
-			CurrentGame.Running = true;
 		}
 	}
 }

@@ -22,13 +22,19 @@ namespace Bed_Wars_Code
 
 		List<BWAction> acts = new List<BWAction>();
 
+		public virtual void Setup()
+		{
+			
+		}
+		
 		public Question ques;
 
 		public Map map;
 
-		public Location(string name, Map map, int blocksreq)
+		public Location(string name, Map map, int blocksreq, int[] coords)
 		{
 			this.map = map;
+			this.Coords = coords;
 			this.BlocksRequired = blocksreq;
 			this.name = name;
 			ConnectedPlaces = GetConnectedPlaces();

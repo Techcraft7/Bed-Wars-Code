@@ -10,9 +10,14 @@ namespace Bed_Wars_Code
 {
 	public class Base : Location
 	{
-		public Base(string name, Map map, int blocksreq, Team t) : base(name, map, blocksreq)
+		public Base(string name, Map map, int blocksreq, Team t, int[] coords) : base(name, map, blocksreq, coords)
 		{
 			Team = t;
+			Setup();
+		}
+		
+		public override void Setup()
+		{
 			this.ques = new Question("You are at your base, What do you do?", this.acts);
 			this.TeamBed = new Bed(Team);
 			var list = new List<BWAction>();

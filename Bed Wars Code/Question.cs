@@ -20,9 +20,10 @@ namespace Bed_Wars_Code
 		{
 			Text = QText;
 			this.actions = actions;
+			Console.WriteLine(QText);
 		}
 
-		private string GetOptions()
+		private string GetOptionsString()
 		{
 			string output = "";
 			foreach (BWAction i in actions) 
@@ -49,7 +50,7 @@ namespace Bed_Wars_Code
 					}
 					else
 					{
-						CCM.WriteLineColor("You did not enter a valid option! options: " + GetOptions() + "\nPress enter to continue", ConsoleColor.Red);
+						CCM.WriteLineColor("You did not enter a valid option! options: " + GetOptionsString() + "\nPress enter to continue", ConsoleColor.Red);
 						Console.ReadLine();
 						Console.Clear();
 						break;

@@ -10,7 +10,7 @@ namespace Bed_Wars_Code
 {
 	public class DiamondGen : Genorator
 	{
-		public DiamondGen(string name, Map map, int blocksreq) : base(name, map, blocksreq)
+		public DiamondGen(string name, Map map, int blocksreq, int[] coords) : base(name, map, blocksreq, coords)
 		{
 			this.SingleResItemID = Resources.Diamond;
 		}

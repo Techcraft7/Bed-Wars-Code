@@ -26,6 +26,46 @@ namespace Bed_Wars_Code
 			this.BWMap = map;
 		}
 		
+		public void Start()
+		{
+			Running = true;
+		Retry:
+			for (int index = 0; index < Players.Count; index = index)
+			{
+				Player p = Players[index];
+				#if DEBUG
+				Console.WriteLine("testing player " + p.Name);
+				#endif
+				foreach (Location[] row in BWMap.LocCoords)
+				{
+					foreach (Location i in row)
+					{
+						if (i.GetType() == typeof(Base))
+						{
+							Base b = (Base)i.map.GetLocationByCoords(i.Coords[0], i.Coords[1]);
+							if (b.Team == p.CurrentTeam && p.IsAtBase == false)
+							{
+								p.loc = i;
+								p.IsAtBase = true;
+								#if DEBUG
+								Utils.PrintPlayerNameWithFormattingPlusMoreText(p, " is at " + b.Team.DisplayColor + " base");
+								#endif
+								break;
+							}
+						}
+					}
+				}
+				index++;
+			}
+			foreach (Player pl in Players)
+				{
+					if (!pl.IsAtBase)
+					{
+						goto Retry;
+					}
+				}
+		}
+		
 		public Location GetPlayerLoctionByIndex(int index)
 		{
 			return Players[index].loc;
@@ -39,7 +79,7 @@ namespace Bed_Wars_Code
 		public void NextTurn()
 		{
 			IndexOfTurn = IndexOfTurn < Players.Count ? IndexOfTurn + 1 : 0;
-			Utils.GetPlayerLocationQuestion(PlayerFromTurnIndex(IndexOfTurn)).Ask(PlayerFromTurnIndex(IndexOfTurn));
+			PlayerFromTurnIndex(IndexOfTurn).loc.ques.Ask(PlayerFromTurnIndex(IndexOfTurn));
 			BWMap.Update();
 		}
 	}

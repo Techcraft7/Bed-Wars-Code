@@ -15,6 +15,8 @@ namespace Bed_Wars_Code
 
 		public int health = 20;
 		
+		public bool IsAtBase = false;
+		
 		public Location loc;
 
 		public int[] Items = new int[4];
