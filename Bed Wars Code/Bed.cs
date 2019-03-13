@@ -27,7 +27,26 @@ namespace Bed_Wars_Code
 		
 		public void Defend(Player p)
 		{
-			
+			Utils.PrintPlayerNameWithFormattingPlusMoreText(p, "you chose to do bed defense.");
+			if (level == 0)
+			{
+				Console.WriteLine("You don\'t have a bed defense! Would you like to buy one for 4 iron?");
+				string ans = "";
+				while (ans == "" || ans != "yes" || ans != "no")
+				{
+					ans = Console.ReadLine().ToLower();
+					if (ans == "yes" || ans == "no")
+					{
+						if (ans == "yes")
+						{
+							if (p.Items[0] >= 4)
+							{
+								
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }

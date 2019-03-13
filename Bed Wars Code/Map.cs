@@ -30,6 +30,10 @@ namespace Bed_Wars_Code
 				{
 					gen.Update();
 				}
+				foreach (Base bas in row)
+				{
+					bas.TeamForge.Update();
+				}
 			}
 		}
 		

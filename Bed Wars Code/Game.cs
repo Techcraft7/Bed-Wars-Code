@@ -26,16 +26,20 @@ namespace Bed_Wars_Code
 			this.BWMap = map;
 		}
 		
-		public Location GetPlayerLoction(int index)
+		public Location GetPlayerLoctionByIndex(int index)
 		{
 			return Players[index].loc;
 		}
 		
-		
+		public Player PlayerFromTurnIndex(int index)
+		{
+			return Players[index];
+		}
 		
 		public void NextTurn()
 		{
 			IndexOfTurn = IndexOfTurn < Players.Count ? IndexOfTurn + 1 : 0;
+			Utils.GetPlayerLocationQuestion(PlayerFromTurnIndex(IndexOfTurn)).Ask(PlayerFromTurnIndex(IndexOfTurn));
 			BWMap.Update();
 		}
 	}

@@ -38,12 +38,15 @@ namespace Bed_Wars_Code
 				string[] text = {("[" + p.Name + "]"), this.Text};
 				ConsoleColor[] colors = {p.GetTeamColor(), ConsoleColor.White};
 				CCM.WriteLineMultiColor(text, colors);
-				foreach (BWAction i in actions) {
-					if (Console.ReadLine() == i.alias) {
+				foreach (BWAction i in actions)
+				{
+					if (Console.ReadLine().ToLower() == i.alias)
+					{
 						i.Execute(p);
 						success = true;
 					}
-					else {
+					else
+					{
 						CCM.WriteLineColor("You did not enter a valid option! options: " + GetOptions() + "\nPress enter to continue", ConsoleColor.Red);
 						Console.ReadLine();
 						Console.Clear();
@@ -52,6 +55,11 @@ namespace Bed_Wars_Code
 				}
 			}
 			success = false;
+		}
+		
+		public void CombatAsk(Player[] ps)
+		{
+			
 		}
 	}
 }

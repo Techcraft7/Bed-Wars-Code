@@ -101,9 +101,19 @@ namespace Bed_Wars_Code
 			Console.WriteLine("Starting!");
 			while (CurrentGame.Running)
 			{
-				foreach (Team t in CurrentGame.)
+				CurrentGame.NextTurn();
+				foreach (Team t in CurrentGame.teams)
 				{
-					if ()
+					t.Update();
+					if (t.Eliminated == false)
+					{
+						continue;
+					}
+					else
+					{
+						CurrentGame.Running = false;
+						break;
+					}
 				}
 			}
 			Console.Write("Press enter to continue . . . ");

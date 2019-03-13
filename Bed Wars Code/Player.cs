@@ -13,10 +13,14 @@ namespace Bed_Wars_Code
 	{
 		public string Name = "";
 
+		public int health = 20;
+		
 		public Location loc;
 
 		public int[] Items = new int[4];
 
+		public bool IsDead = false;
+		
 		//iron, gold, diamond, emerald
 		public int[] EnderChest = new int[4];
 
@@ -26,6 +30,11 @@ namespace Bed_Wars_Code
 		public ConsoleColor GetTeamColor()
 		{
 			return this.CurrentTeam.DisplayColor;
+		}
+		
+		public string GetItemMessage()
+		{
+			return string.Format("You have:\n{0} iron\n{1} gold\n{2} diamond\n{3} emerald", Items[0], Items[1], Items[2], Items[3]);
 		}
 		
 		public Player(string name)

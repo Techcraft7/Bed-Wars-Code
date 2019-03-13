@@ -72,6 +72,7 @@ namespace Bed_Wars_Code
 		
 		public void Update()
 		{
+			step++;
 			if (MultiRes)
 			{
 				for (int i = 0; i < MultiResTimes.Length; i++)

@@ -13,7 +13,7 @@ namespace Bed_Wars_Code
 		public int[] Times = {
 			1,
 			4,
-			-1,
+			-1,//No diamonds in forge
 			40
 		};
 		
@@ -21,6 +21,7 @@ namespace Bed_Wars_Code
 		
 		public Forge(string name, Map map, int blocksreq) : base(name, map, blocksreq)
 		{
+			MultiRes = true;
 		}
 	}
 }

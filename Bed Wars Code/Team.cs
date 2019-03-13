@@ -24,6 +24,14 @@ namespace Bed_Wars_Code
 			this.Name = DisplayColor.ToString() + " Base";
 		}
 
+		public void Update()
+		{
+			if (Players[0].IsDead && BaseLoc.TeamBed.destroyed)
+			{
+				Eliminated = true;
+			}
+		}
+		
 		public ConsoleColor DisplayColor;
 
 		Color TeamColor;//for a gui (to be implimented)
