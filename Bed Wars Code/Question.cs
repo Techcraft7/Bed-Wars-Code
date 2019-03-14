@@ -19,8 +19,11 @@ namespace Bed_Wars_Code
 		public Question(string QText, List<BWAction> actions)
 		{
 			Text = QText;
-			this.actions = actions;
-			Console.WriteLine(QText);
+			this.actions = new List<BWAction>();
+			foreach (BWAction act in actions)
+			{
+				this.actions.Add(act);
+			}
 		}
 
 		private string GetOptionsString()
@@ -38,15 +41,14 @@ namespace Bed_Wars_Code
 		{
 			while (success == false) 
 			{
-				string[] text = {("[" + p.Name + "]"), this.Text};
-				ConsoleColor[] colors = {p.GetTeamColor(), ConsoleColor.White};
-				CCM.WriteLineMultiColor(text, colors);
+				Utils.PrintPlayerNameWithFormattingPlusMoreText(p, this.Text);
 				foreach (BWAction i in actions)
 				{
 					if (Console.ReadLine().ToLower() == i.alias)
 					{
 						i.Execute(p);
 						success = true;
+						break;
 					}
 					else
 					{

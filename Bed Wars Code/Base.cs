@@ -18,12 +18,12 @@ namespace Bed_Wars_Code
 		
 		public override void Setup()
 		{
-			this.ques = new Question("You are at your base, What do you do?", this.acts);
 			this.TeamBed = new Bed(Team);
 			var list = new List<BWAction>();
 			list.Add(new BWAction("get resources", CollectResources));
 			list.Add(TeamBed.DefendAct);
 			acts = list;
+			this.ques = new Question("You are at your base, What do you do?", this.acts);
 		}
 
 		public Team Team;
