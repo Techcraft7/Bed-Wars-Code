@@ -23,6 +23,7 @@ namespace Bed_Wars_Code
 			list.Add(new BWAction("get resources", CollectResources));
 			list.Add(TeamBed.DefendAct);
 			acts = list;
+			TeamForge = new Forge("TeamForge", map, 0, Coords);
 			this.ques = new Question("You are at your base, What do you do?", this.acts);
 		}
 
@@ -38,7 +39,22 @@ namespace Bed_Wars_Code
 		{
 			Console.WriteLine("You chose to collect resources:\nRolling...");
 			int roll = new Random(DateTime.Now.Millisecond).Next(1, 7);
-			Console.WriteLine();
+			Console.WriteLine("You rolled {0}", roll);
+			switch (roll)
+			{
+				case 1:
+					Console.WriteLine("The items despawned :(");
+					break;
+				default:
+					#if DEBUG
+					Console.WriteLine(p.Items[0] + " iron");
+					Console.WriteLine(TeamForge.MultiResItems[0] + " iron in forge");
+					#endif
+					p.Items[0] += TeamForge.MultiResItems[0] * roll;
+					p.Items[1] += TeamForge.MultiResItems[1] * roll;
+					Console.WriteLine(p.GetItemMessage());
+					break;
+			}
 		}
 	}
 }

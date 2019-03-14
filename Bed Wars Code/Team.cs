@@ -26,8 +26,17 @@ namespace Bed_Wars_Code
 
 		public void Update()
 		{
-			if (Players[0].IsDead && BaseLoc.TeamBed.destroyed)
+			if (Players.Count == 1)
 			{
+				if (Players[0].IsDead && BaseLoc.TeamBed.destroyed)
+				{
+					Eliminated = true;
+					CCM.WriteLineMultiColor(new string[] {"------------------\n\n >", DisplayColor.ToString(), " team has been eliminated!\n\n------------------"}, new ConsoleColor[] {ConsoleColor.White, DisplayColor, ConsoleColor.White});
+				}
+			}
+			else
+			{
+				CCM.WriteLineMultiColor(new string[] {"------------------\n\n >", DisplayColor.ToString(), " team has been eliminated!\n\n------------------"}, new ConsoleColor[] {ConsoleColor.White, DisplayColor, ConsoleColor.White});
 				Eliminated = true;
 			}
 		}

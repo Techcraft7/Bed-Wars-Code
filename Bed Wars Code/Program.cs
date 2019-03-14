@@ -110,9 +110,17 @@ namespace Bed_Wars_Code
 			#endif
 			Console.Clear();
 			Console.WriteLine("Starting!");
+			CurrentGame.teams = new List<Team>();
+			foreach (Team t in teams)
+			{
+				CurrentGame.teams.Add(t);
+			}
 			while (CurrentGame.Running)
 			{
 				CurrentGame.NextTurn();
+				#if DEBUG
+				Console.WriteLine("Game running? " + CurrentGame.Running);
+				#endif
 				foreach (Team t in CurrentGame.teams)
 				{
 					t.Update();

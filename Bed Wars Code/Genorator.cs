@@ -8,7 +8,11 @@ using Techcraft7_DLL_Pack;
 using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
 namespace Bed_Wars_Code
 {
-	public class Genorator : Location
+	public interface IGen
+	{
+		
+	}
+	public class Genorator : Location, IGen
 	{
 		public Genorator(string name, Map map, int blocksreq, int[] coords) : base(name, map, blocksreq, coords)
 		{

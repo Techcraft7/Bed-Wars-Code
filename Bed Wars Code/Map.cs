@@ -26,13 +26,20 @@ namespace Bed_Wars_Code
 		{
 			foreach (Location[] row in LocCoords)
 			{
-				foreach (Genorator gen in row)
+				for (int i = 0; i < row.Length; i++)
 				{
-					gen.Update();
-				}
-				foreach (Base bas in row)
-				{
-					bas.TeamForge.Update();
+					if (row[i].GetType() == typeof(DiamondGen) || row[i].GetType() == typeof(EmeraldGen) || row[i].GetType() == typeof(Genorator))
+					{
+						Genorator g = (Genorator)row[i];
+						g.Update();
+						break;
+					}
+					else if (row[i].GetType() == typeof(Base))
+					{
+						Base b = (Base)row[i];
+						b.TeamForge.Update();
+						break;
+					}
 				}
 			}
 		}

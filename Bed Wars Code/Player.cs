@@ -42,6 +42,8 @@ namespace Bed_Wars_Code
 		public Player(string name)
 		{
 			this.Name = name;
+			Items = new int[4] {0, 0, 0, 0};
+			EnderChest = new int[4] {0, 0, 0, 0};;
 		}
 	}
 }
