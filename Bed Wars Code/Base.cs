@@ -39,7 +39,7 @@ namespace Bed_Wars_Code
 		{
 			Console.WriteLine("You chose to collect resources:\nRolling...");
 			int roll = new Random(DateTime.Now.Millisecond).Next(1, 7);
-			Console.WriteLine("You rolled {0}", roll);
+			Console.WriteLine("You rolled a {0}", roll);
 			switch (roll)
 			{
 				case 1:
