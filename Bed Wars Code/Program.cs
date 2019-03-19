@@ -130,8 +130,22 @@ namespace Bed_Wars_Code
 					}
 					else
 					{
-						CurrentGame.Running = false;
-						break;
+						List<Team> AliveTeams = new List<Team>();
+						foreach (Team test in CurrentGame.teams)
+						{
+							CCM.WriteLineMultiColor(new string[] {test.Players.Count == 1 ? test.Players[0].Name : "NULL", " is " + (test.Eliminated? "dead" : "alive")}, new ConsoleColor[] { test.DisplayColor, ConsoleColor.White});
+							if (test.Eliminated == true)
+							{
+								continue;
+							}
+							AliveTeams.Add(test);
+							#if DEBUG
+							#endif
+						}
+						if (AliveTeams.Count == 1)
+						{
+							Utils.PrintPlayerNameWithFormattingPlusMoreText(AliveTeams[0].Players[0], "Wins!");
+						}
 					}
 				}
 			}

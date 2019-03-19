@@ -53,6 +53,7 @@ namespace Bed_Wars_Code
 					else
 					{
 						CCM.WriteLineColor("You did not enter a valid option! options: " + GetOptionsString() + "\nPress enter to continue", ConsoleColor.Red);
+						success = false;
 						Console.ReadLine();
 						Console.Clear();
 						break;
