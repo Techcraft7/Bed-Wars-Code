@@ -22,7 +22,7 @@ namespace Bed_Wars_Code
 		public Bed(Team t)
 		{
 			BedTeam = t;
-			DefendAct = new BWAction("bed", Defend);
+			DefendAct = new BWAction("defense".Replace("\\n",""), Defend);
 		}
 		
 		public void Defend(Player p)

@@ -101,7 +101,7 @@ namespace Bed_Wars_Code
 				Console.WriteLine("# of players = " + players.Count);
 			}
 			#endif
-			CurrentGame = new Game(players, new MapGenorator(teams).MakeMap(teams));
+			CurrentGame = new Game(players, new MapGenorator(teams).MakeMap(teams), teams);
 			CurrentGame.Start();
 			#if DEBUG
 				Console.WriteLine(CurrentGame.BWMap.ToString());
@@ -133,18 +133,19 @@ namespace Bed_Wars_Code
 						List<Team> AliveTeams = new List<Team>();
 						foreach (Team test in CurrentGame.teams)
 						{
-							CCM.WriteLineMultiColor(new string[] {test.Players.Count == 1 ? test.Players[0].Name : "NULL", " is " + (test.Eliminated? "dead" : "alive")}, new ConsoleColor[] { test.DisplayColor, ConsoleColor.White});
+							CCM.WriteLineMultiColor(new string[] {test.Players.Count != 0 ? test.Players[0].Name : "unknown", " is " + (test.Eliminated? "dead" : "alive")}, new ConsoleColor[] { test.DisplayColor, ConsoleColor.White});
 							if (test.Eliminated == true)
 							{
-								continue;
+								continue; 
 							}
 							AliveTeams.Add(test);
 							#if DEBUG
+							Console.WriteLine(test.Name + " is alive yay");
 							#endif
 						}
 						if (AliveTeams.Count == 1)
 						{
-							Utils.PrintPlayerNameWithFormattingPlusMoreText(AliveTeams[0].Players[0], "Wins!");
+							CCM.WriteLineColor("GAME OVER!", ConsoleColor.Red);
 						}
 					}
 				}

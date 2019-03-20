@@ -20,8 +20,9 @@ namespace Bed_Wars_Code
 
 		public List<Player> Players = new List<Player>();
 
-		public Game(List<Player> Players, Map map)
+		public Game(List<Player> Players, Map map, List<Team> teams)
 		{
+			this.teams = teams;
 			this.Players = Players;
 			this.BWMap = map;
 		}
@@ -40,10 +41,19 @@ namespace Bed_Wars_Code
 				{
 					foreach (Location i in row)
 					{
+						#if DEBUG
+						Console.WriteLine("testing " + i.name);
+						#endif
 						if (i.GetType() == typeof(Base))
 						{
 							Base b = (Base)i.map.GetLocationByCoords(i.Coords[0], i.Coords[1]);
-							if (b.Team == p.CurrentTeam && p.IsAtBase == false)
+							#if DEBUG
+							Console.WriteLine(i.name + " is a base");
+							Console.WriteLine("p.isatbase = {0}", p.IsAtBase);
+							Console.WriteLine("p.team = {0}", p.CurrentTeam.Name);
+							Console.WriteLine("b.team = {0}", b.Team.Name);
+							#endif
+							if (b.Team.Name == p.CurrentTeam.Name && p.IsAtBase == false)
 							{
 								p.loc = i;
 								p.IsAtBase = true;
@@ -58,12 +68,21 @@ namespace Bed_Wars_Code
 				index++;
 			}
 			foreach (Player pl in Players)
+			{
+				if (!pl.IsAtBase)
 				{
-					if (!pl.IsAtBase)
-					{
-						goto Retry;
-					}
+					goto Retry;
 				}
+			}
+			foreach (Team t in teams)
+			{
+				if (t.Players.Count < 1)
+				{
+					t.Eliminated = true;
+					t.SuppressEliminationMessage = true;
+					t.Players.Add(new Player("NULL"));
+				}
+			}
 		}
 		
 		public Location GetPlayerLoctionByIndex(int index)
@@ -79,6 +98,7 @@ namespace Bed_Wars_Code
 		public void NextTurn()
 		{
 			IndexOfTurn = IndexOfTurn < Players.Count ? IndexOfTurn + 1 : 0;
+			Console.WriteLine(IndexOfTurn);
 			PlayerFromTurnIndex(IndexOfTurn).loc.ques.Ask(PlayerFromTurnIndex(IndexOfTurn));
 			BWMap.Update();
 		}
