@@ -43,8 +43,10 @@ namespace Bed_Wars_Code
 				Console.WriteLine("Enter a name for Player {0}:", i + 1);
 				players.Add(new Player(Console.ReadLine()));
 			}
+		retry:
 			Console.WriteLine("Loading...");
 			NumberOfTeams = NumberOfPlayers;
+			teams.RemoveRange(0, teams.Count);
 			List<int> used = new List<int>();
 			List<int> usedclrs = new List<int>();
 			int c = 1;
@@ -102,7 +104,15 @@ namespace Bed_Wars_Code
 			}
 			#endif
 			CurrentGame = new Game(players, new MapGenorator(teams).MakeMap(teams), teams);
-			CurrentGame.Start();
+			try
+			{
+				CurrentGame.Start();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("GAME START FAILED!!!! RETRYING!!!");
+				goto retry;
+			}
 			#if DEBUG
 				Console.WriteLine(CurrentGame.BWMap.ToString());
 				Console.WriteLine("Press enter to continue");
@@ -133,15 +143,11 @@ namespace Bed_Wars_Code
 						List<Team> AliveTeams = new List<Team>();
 						foreach (Team test in CurrentGame.teams)
 						{
-							CCM.WriteLineMultiColor(new string[] {test.Players.Count != 0 ? test.Players[0].Name : "unknown", " is " + (test.Eliminated? "dead" : "alive")}, new ConsoleColor[] { test.DisplayColor, ConsoleColor.White});
 							if (test.Eliminated == true)
 							{
 								continue; 
 							}
 							AliveTeams.Add(test);
-							#if DEBUG
-							Console.WriteLine(test.Name + " is alive yay");
-							#endif
 						}
 						if (AliveTeams.Count == 1)
 						{

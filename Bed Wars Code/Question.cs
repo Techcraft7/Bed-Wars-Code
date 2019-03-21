@@ -44,7 +44,7 @@ namespace Bed_Wars_Code
 				Utils.PrintPlayerNameWithFormattingPlusMoreText(p, this.Text);
 				foreach (BWAction i in actions)
 				{
-					if (Console.ReadLine().ToLower() == i.alias)
+					if (Console.ReadLine().ToLower() == i.alias.ToLower())
 					{
 						i.Execute(p);
 						success = true;

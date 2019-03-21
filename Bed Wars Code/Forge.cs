@@ -9,18 +9,12 @@ using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
 namespace Bed_Wars_Code
 {
 	public class Forge : Genorator
-	{
-		public int[] Times = {
-			1,
-			4,
-			-1,//No diamonds in forge
-			40
-		};
-		
+	{	
 		//iron, gold, diamond, emerald
 		
 		public Forge(string name, Map map, int blocksreq, int[] coords) : base(name, map, blocksreq, coords)
 		{
+			this.MultiResTimes = new int[] { 1, 4, -1, 40 };
 			MultiRes = true;
 		}
 	}

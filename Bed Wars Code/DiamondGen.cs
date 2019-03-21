@@ -12,7 +12,9 @@ namespace Bed_Wars_Code
 	{
 		public DiamondGen(string name, Map map, int blocksreq, int[] coords) : base(name, map, blocksreq, coords)
 		{
+			this.MultiRes = false;
 			this.SingleResItemID = Resources.Diamond;
+			this.SingleResTime = 5;
 		}
 	}
 }

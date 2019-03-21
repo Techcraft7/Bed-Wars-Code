@@ -47,12 +47,6 @@ namespace Bed_Wars_Code
 						if (i.GetType() == typeof(Base))
 						{
 							Base b = (Base)i.map.GetLocationByCoords(i.Coords[0], i.Coords[1]);
-							#if DEBUG
-							Console.WriteLine(i.name + " is a base");
-							Console.WriteLine("p.isatbase = {0}", p.IsAtBase);
-							Console.WriteLine("p.team = {0}", p.CurrentTeam.Name);
-							Console.WriteLine("b.team = {0}", b.Team.Name);
-							#endif
 							if (b.Team.Name == p.CurrentTeam.Name && p.IsAtBase == false)
 							{
 								p.loc = i;
@@ -80,7 +74,6 @@ namespace Bed_Wars_Code
 				{
 					t.Eliminated = true;
 					t.SuppressEliminationMessage = true;
-					t.Players.Add(new Player("NULL"));
 				}
 			}
 		}
@@ -97,10 +90,10 @@ namespace Bed_Wars_Code
 		
 		public void NextTurn()
 		{
-			IndexOfTurn = IndexOfTurn < Players.Count ? IndexOfTurn + 1 : 0;
 			Console.WriteLine(IndexOfTurn);
 			PlayerFromTurnIndex(IndexOfTurn).loc.ques.Ask(PlayerFromTurnIndex(IndexOfTurn));
 			BWMap.Update();
+			IndexOfTurn = IndexOfTurn != Players.Count - 1 ? IndexOfTurn + 1 : 0;
 		}
 	}
 }

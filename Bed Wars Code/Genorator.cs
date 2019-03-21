@@ -81,6 +81,11 @@ namespace Bed_Wars_Code
 			{
 				for (int i = 0; i < MultiResTimes.Length; i++)
 				{
+					#if DEBUG
+					Console.WriteLine("i = {0}", step);
+					Console.WriteLine("step = {0}", step);
+					Console.WriteLine("MultiResTimes[i] = {0}", MultiResTimes[i]);
+					#endif
 					if (MultiResTimes[i] <= 0)
 					{
 						continue;
