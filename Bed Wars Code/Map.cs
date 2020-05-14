@@ -108,9 +108,9 @@ namespace Bed_Wars_Code
 					var l = mapData[x][y];
 					if (l != null)
 					{
-						if (l.GetType().IsSubclassOf(typeof(Generator)))
+						if (l.GetType().IsSubclassOf(typeof(Generator)) || l.GetType() == typeof(Generator))
 						{
-							for (int i = 0; i <= rng.Next(10); i++)
+							for (int i = 0; i <= rng.Next(Generator.DIAMOND_TIME / 2); i++)
 							{
 								l.GeneratorTick();
 							}
@@ -136,8 +136,29 @@ namespace Bed_Wars_Code
 			}
 		}
 
+		public Base GetPlayerBase(Player p)
+		{
+			for (int y = 0; y < mapData.Length; y++)
+			{
+				for (int x = 0; x < mapData[y].Length; x++)
+				{
+					if (mapData[x][y] != null)
+					{
+						if (mapData[x][y].GetType() == typeof(Base))
+						{
+							//"as base" is the same as "(Base)mapData[x][y]"
+							//so basically a cast
+							return mapData[x][y] as Base;
+						}
+					}
+				}
+			}
+			return null;
+		}
+
 		public void SendPlayerToSpawn(Player p)
 		{
+			p.Health = 20;
 			for (int y = 0; y < mapData.Length; y++)
 			{
 				for (int x = 0; x < mapData.Length; x++)

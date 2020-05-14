@@ -9,8 +9,9 @@ namespace Bed_Wars_Code
 {
 	internal class Player
 	{
+		public double Health { get; set; }
 		public PlayerInventory Inventory { get; private set; }
-		public Dictionary<UpgradeType, int> Upgrades = new Dictionary<UpgradeType, int>();
+		public Dictionary<UpgradeType, int> Upgrades = Utils.GetEmptyUpgradeDict();
 		public readonly string Name;
 		public readonly ConsoleColor Color;
 		public Tuple<int, int> Coords { get; set; }
@@ -21,6 +22,7 @@ namespace Bed_Wars_Code
 			Name = name;
 			Color = color;
 			Inventory = new PlayerInventory();
+			Health = 20;
 		}
 
 		public void SetCoords(int x, int y)
@@ -38,7 +40,7 @@ namespace Bed_Wars_Code
 		public void ExecuteTurn(Game game)
 		{
 			Utils.PrintPlayerNameInText("%PLAYER%, your turn!\n", this);
-			Location l = game.map.GetPlayerLocation(game.CurrentPlayer);
+			Location l = game.Map.GetPlayerLocation(game.CurrentPlayer);
 			if (l != null)
 			{
 				l.ExecuteTurn(game);
@@ -46,13 +48,18 @@ namespace Bed_Wars_Code
 			else
 			{
 				ColorConsoleMethods.WriteLineColor("Player is at a null location! Sending to base!", ConsoleColor.Red);
-				game.map.SendPlayerToSpawn(game.CurrentPlayer);
+				game.Map.SendPlayerToSpawn(game.CurrentPlayer);
 			}
 		}
 
 		public void GiveResources(GeneratorResouces res)
 		{
 			Inventory.GiveResources(res);
+		}
+
+		public void DrawInventory()
+		{
+			ColorConsoleMethods.WriteLineColor($"You have: {Inventory}", ConsoleColor.Green);
 		}
 	}
 }

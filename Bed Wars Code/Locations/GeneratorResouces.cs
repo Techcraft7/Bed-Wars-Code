@@ -9,6 +9,14 @@ namespace Bed_Wars_Code.Locations
 		public int Diamond { get; private set; }
 		public int Emerald { get; private set; }
 
+		public GeneratorResouces(int Iron = 0, int Gold = 0, int Diamond = 0, int Emerald = 0)
+		{
+			this.Iron = Iron;
+			this.Gold = Gold;
+			this.Diamond = Diamond;
+			this.Emerald = Emerald;
+		}
+
 		public void AddResouces(ResourceType type, int amount)
 		{
 			switch (type)
@@ -47,12 +55,12 @@ namespace Bed_Wars_Code.Locations
 			}
 		}
 
-		public void Add(GeneratorResouces r)
+		public void Add(ref GeneratorResouces r)
 		{
-			Iron += r.Iron;
-			Gold += r.Gold;
-			Diamond += r.Diamond;
-			Emerald += r.Emerald;
+			r.Iron += Iron;
+			r.Gold += Gold;
+			r.Diamond += Diamond;
+			r.Emerald += Emerald;
 		}
 
 		public void Reset()
@@ -60,11 +68,13 @@ namespace Bed_Wars_Code.Locations
 			Iron = Gold = Diamond = Emerald = 0;
 		}
 
-		public void Collect(Player player)
+		public void Collect(ref Player player)
 		{
 			GeneratorResouces r = this;
 			player.GiveResources(r);
 			Reset();
 		}
+
+		public override string ToString() => $"Iron: {Iron} Gold: {Gold} Diamond: {Diamond} Emerald {Emerald}";
 	}
 }

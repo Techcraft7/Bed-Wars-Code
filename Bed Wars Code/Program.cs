@@ -46,7 +46,7 @@ namespace Bed_Wars_Code
 					WriteLineColor($"Please enter a valid number! {min} to {max}", Red);
 				}
 				first = false;
-				Write("Number of players: ");
+				Write(prompt);
 			}
 			while (!int.TryParse(ReadLine(), out v) || !Utils.IsInRange(v, min, max));
 			return v;

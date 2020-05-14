@@ -16,7 +16,26 @@ namespace Bed_Wars_Code.Inventory
 		public int Emerald { get => resources.Emerald; set => resources.SetResources(ResourceType.EMERALD, value); }
 		public void GiveResources(GeneratorResouces resources)
 		{
-			resources.Add(this.resources);
+			resources.Add(ref this.resources);
 		}
+
+		public bool HasItems(GeneratorResouces other)
+		{
+			return Iron >= other.Iron &&
+				Gold >= other.Gold &&
+				Diamond >= other.Diamond &&
+				Emerald >= other.Emerald;
+		}
+
+		public void TakeItems(GeneratorResouces other)
+		{
+			Iron -= other.Iron;
+			Gold -= other.Gold;
+			Diamond -= other.Diamond;
+			Emerald -= other.Emerald;
+		}
+
+		public override string ToString() => resources.ToString();
+		public void Reset() => resources.Reset();
 	}
 }

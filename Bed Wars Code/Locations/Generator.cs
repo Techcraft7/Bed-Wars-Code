@@ -11,9 +11,9 @@ namespace Bed_Wars_Code.Locations
 	using static ColorConsoleMethods;
 	internal class Generator : Location
 	{
-		private const int GOLD_TIME = 4;
-		private const int DIAMOND_TIME = 16;
-		private const int EMERALD_TIME = 3;
+		public const int GOLD_TIME = 4;
+		public const int DIAMOND_TIME = 16;
+		public const int EMERALD_TIME = 32;
 		public readonly GeneratorType type;
 		private GeneratorResouces resources = new GeneratorResouces();
 		private int counter = 0;
@@ -53,14 +53,14 @@ namespace Bed_Wars_Code.Locations
 				case GeneratorType.DIAMOND:
 					if (counter % Math.Max(DIAMOND_TIME / Upgrade, 0) == 0)
 					{
-						resources.AddResouces(ResourceType.GOLD, 1);
+						resources.AddResouces(ResourceType.DIAMOND, 1);
 						counter = 0;
 					}
 					break;
 				case GeneratorType.EMERALD:
 					if (counter % Math.Max(EMERALD_TIME / Upgrade, 0) == 0)
 					{
-						resources.AddResouces(ResourceType.GOLD, 1);
+						resources.AddResouces(ResourceType.EMERALD, 1);
 						counter = 0;
 					}
 					break;
@@ -71,30 +71,30 @@ namespace Bed_Wars_Code.Locations
 		public override KeyValuePair<char, ConsoleColor> GetMapSymbol()
 		{
 
-			ConsoleColor color = ConsoleColor.White;
+			ConsoleColor color = White;
 			switch (type)
 			{
 				case GeneratorType.DIAMOND:
-					color = ConsoleColor.Cyan;
+					color = Cyan;
 					break;
 				case GeneratorType.EMERALD:
-					color = ConsoleColor.Green;
+					color = Green;
 					break;
 			}
 			return new KeyValuePair<char, ConsoleColor>(type.ToString()[0], color);
 		}
 
-		public override List<KeyValuePair<string, Action<Game>>> GetOptions()
+		public override List<KeyValuePair<string, Func<Game, bool>>> GetOptions()
 		{
 			var list = base.GetOptions();
-			list.Add(new KeyValuePair<string, Action<Game>>("Collect", new Action<Game>(CollectResources)));
+			list.Add(new KeyValuePair<string, Func<Game, bool>>("Collect", new Func<Game, bool>(CollectResources)));
 			return list;
 		}
 
-		public void CollectResources(Game game)
+		public bool CollectResources(Game game)
 		{
 			WriteLineMultiColor(
-				new string[] { "You collected: ", $"{resources.Iron} Iron"},
+				new string[] { "You collected: ", $"{resources.Iron} Iron" },
 				new ConsoleColor[] { White, White }
 			);
 			WriteLineMultiColor(
@@ -109,9 +109,12 @@ namespace Bed_Wars_Code.Locations
 				new string[] { "You collected: ", $"{resources.Emerald} Emerald" },
 				new ConsoleColor[] { White, Green }
 			);
-			resources.Collect(game.CurrentPlayer);
+			Player p = game.CurrentPlayer;
+			resources.Collect(ref p);
+			game.CurrentPlayer.DrawInventory();
+			return true;
 		}
 
-		public override string ToString() => $"Generator: {type}";
+		public override string ToString() => $"Generator: {Utils.FormatEnumByUnderscores(type)}";
 	}
 }

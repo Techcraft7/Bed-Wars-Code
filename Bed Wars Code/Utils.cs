@@ -18,6 +18,16 @@ namespace Bed_Wars_Code
 			return list.ToArray();
 		}
 
+		public static Dictionary<UpgradeType, int> GetEmptyUpgradeDict()
+		{
+			var list = new Dictionary<UpgradeType, int>();
+			foreach (UpgradeType ut in Enum.GetValues(typeof(UpgradeType)).Cast<UpgradeType>())
+			{
+				list.Add(ut, 0);
+			}
+			return list;
+		}
+
 		public static bool IsInRange(int v, int min, int max)
 		{
 			if (min > max)
@@ -41,6 +51,16 @@ namespace Bed_Wars_Code
 					throw new ArgumentNullException($"One of the elements of {nameof(list)} is null!");
 				}
 			}
+		}
+
+		public static string FormatEnumByUnderscores<T>(T v) where T : Enum
+		{
+			string[] split2 = v.ToString().Split('_');
+			for (int i = 0; i < split2.Length; i++)
+			{
+				split2[i] = split2[i][0].ToString().ToUpper() + split2[i].Substring(1).ToLower();
+			}
+			return string.Join(" ", split2);
 		}
 
 		public static void ThrowIfOutOfBounds(int v, int min, int max)
