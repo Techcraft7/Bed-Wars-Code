@@ -1,100 +1,53 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.Threading;
-using Bed_Wars_Code;
-using Techcraft7_DLL_Pack;
-using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
+
 namespace Bed_Wars_Code
 {
-	public class Game
-	{		
-		public Map BWMap;
-
-		public bool Running = false;
-		
-		public int IndexOfTurn = 0;
-		
-		public List<Team> teams;
-
-		public List<Player> Players = new List<Player>();
-
-		public Game(List<Player> Players, Map map, List<Team> teams)
+	internal class Game
+	{
+		public bool Running { get; private set; }
+		public Player CurrentPlayer
 		{
-			this.teams = teams;
-			this.Players = Players;
-			this.BWMap = map;
+			get => Running ? Players[TurnIndex] : null;
+			private set => CurrentPlayer = value;
 		}
-		
+		private readonly List<Player> Players;
+		public readonly Map map;
+		private int turnIndex = 0;
+		public int TurnIndex
+		{
+			get => turnIndex % Players.Count;
+		}
+
+		public Game(List<Player> players)
+		{
+			Players = players ?? throw new ArgumentNullException(nameof(players));
+			Utils.ThrowIfAnyNull(players);
+			map = new Map(players.Count, players);
+			Running = false;
+		}
+
 		public void Start()
 		{
 			Running = true;
-		Retry:
-			for (int index = 0; index < Players.Count; index = index)
+			while (Running)
 			{
-				Player p = Players[index];
-				#if DEBUG
-				Console.WriteLine("testing player " + p.Name);
-				#endif
-				foreach (Location[] row in BWMap.LocCoords)
-				{
-					foreach (Location i in row)
-					{
-						#if DEBUG
-						Console.WriteLine("testing " + i.name);
-						#endif
-						if (i.GetType() == typeof(Base))
-						{
-							Base b = (Base)i.map.GetLocationByCoords(i.Coords[0], i.Coords[1]);
-							if (b.Team.Name == p.CurrentTeam.Name && p.IsAtBase == false)
-							{
-								p.loc = i;
-								p.IsAtBase = true;
-								#if DEBUG
-								Utils.PrintPlayerNameWithFormattingPlusMoreText(p, " is at " + b.Team.DisplayColor + " base");
-								#endif
-								break;
-							}
-						}
-					}
-				}
-				index++;
-			}
-			foreach (Player pl in Players)
-			{
-				if (!pl.IsAtBase)
-				{
-					goto Retry;
-				}
-			}
-			foreach (Team t in teams)
-			{
-				if (t.Players.Count < 1)
-				{
-					t.Eliminated = true;
-					t.SuppressEliminationMessage = true;
-				}
+				AdvanceTurn();
 			}
 		}
-		
-		public Location GetPlayerLoctionByIndex(int index)
+
+		public void AdvanceTurn()
 		{
-			return Players[index].loc;
-		}
-		
-		public Player PlayerFromTurnIndex(int index)
-		{
-			return Players[index];
-		}
-		
-		public void NextTurn()
-		{
-			Console.WriteLine(IndexOfTurn);
-			PlayerFromTurnIndex(IndexOfTurn).loc.ques.Ask(PlayerFromTurnIndex(IndexOfTurn));
-			BWMap.Update();
-			IndexOfTurn = IndexOfTurn != Players.Count - 1 ? IndexOfTurn + 1 : 0;
+			Console.Clear();
+			map.TickGenerators();
+			if (!Players[TurnIndex].IsDead)
+			{
+				Players[TurnIndex].ExecuteTurn(this);
+				Console.WriteLine("Press any key to continue...");
+				_ = Console.ReadKey(true);
+			}
+			turnIndex++;
 		}
 	}
 }
-

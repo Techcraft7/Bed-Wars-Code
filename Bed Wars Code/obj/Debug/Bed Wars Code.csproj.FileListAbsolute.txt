@@ -4,3 +4,11 @@ D:\Code\Bed Wars Code\Bed Wars Code\bin\Debug\Bed Wars Code.exe
 D:\Code\Bed Wars Code\Bed Wars Code\bin\Debug\Bed Wars Code.pdb
 D:\Code\Bed Wars Code\Bed Wars Code\obj\Debug\Bed Wars Code.exe
 D:\Code\Bed Wars Code\Bed Wars Code\obj\Debug\Bed Wars Code.pdb
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\obj\Debug\Bed Wars Code.csprojAssemblyReference.cache
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\obj\Debug\Bed Wars Code.csproj.CoreCompileInputs.cache
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\obj\Debug\Bed Wars Code.exe
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\obj\Debug\Bed Wars Code.pdb
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\bin\Debug\Bed Wars Code.exe.config
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\bin\Debug\Bed Wars Code.exe
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\bin\Debug\Bed Wars Code.pdb
+C:\Users\mctec\Source\Bed-Wars-Code\Bed Wars Code\obj\Debug\Bed Wars Code.csproj.CopyComplete

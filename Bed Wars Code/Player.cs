@@ -1,50 +1,58 @@
-﻿
-using System;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.Threading;
-using Bed_Wars_Code;
 using Techcraft7_DLL_Pack;
-using CCM = Techcraft7_DLL_Pack.ColorConsoleMethods;
+using Bed_Wars_Code.Locations;
+using Bed_Wars_Code.Inventory;
+
 namespace Bed_Wars_Code
 {
-	public class Player
+	internal class Player
 	{
-		public string Name = "";
+		public PlayerInventory Inventory { get; private set; }
+		public Dictionary<UpgradeType, int> Upgrades = new Dictionary<UpgradeType, int>();
+		public readonly string Name;
+		public readonly ConsoleColor Color;
+		public Tuple<int, int> Coords { get; set; }
+		public bool IsDead { get; set; }
 
-		public int health = 20;
-		
-		public bool IsAtBase = false;
-		
-		public Location loc;
-
-		public int[] Items = new int[4];
-
-		public bool IsDead = false;
-		
-		//iron, gold, diamond, emerald
-		public int[] EnderChest = new int[4];
-
-		//iron, gold, diamond, emerald
-		public Team CurrentTeam;
-
-		public ConsoleColor GetTeamColor()
+		public Player(string name, ConsoleColor color)
 		{
-			return this.CurrentTeam.DisplayColor;
+			Name = name;
+			Color = color;
+			Inventory = new PlayerInventory();
 		}
-		
-		public string GetItemMessage()
+
+		public void SetCoords(int x, int y)
 		{
-			return string.Format("You have:\n{0} iron\n{1} gold\n{2} diamond\n{3} emerald", Items[0], Items[1], Items[2], Items[3]);
+			Coords = new Tuple<int, int>(x, y);
 		}
-		
-		public Player(string name)
+
+		public void WriteToConsole()
 		{
-			this.Name = name;
-			Items = new int[4] {0, 0, 0, 0};
-			EnderChest = new int[4] {0, 0, 0, 0};;
+			ColorConsoleMethods.WriteColor($"[{Color.ToString().ToUpper()}] {Name}", Color);
+		}
+
+		public override string ToString() => $"Player {{ Name: {Name} Color: {Color} }}";
+
+		public void ExecuteTurn(Game game)
+		{
+			Utils.PrintPlayerNameInText("%PLAYER%, your turn!\n", this);
+			Location l = game.map.GetPlayerLocation(game.CurrentPlayer);
+			if (l != null)
+			{
+				l.ExecuteTurn(game);
+			}
+			else
+			{
+				ColorConsoleMethods.WriteLineColor("Player is at a null location! Sending to base!", ConsoleColor.Red);
+				game.map.SendPlayerToSpawn(game.CurrentPlayer);
+			}
+		}
+
+		public void GiveResources(GeneratorResouces res)
+		{
+			Inventory.GiveResources(res);
 		}
 	}
 }
-
